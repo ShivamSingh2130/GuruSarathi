@@ -64,15 +64,15 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "CHANNEL_ID");
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            builder.setSmallIcon(resourceImage);
+            builder.setSmallIcon(R.drawable.chat);
         } else {
-            builder.setSmallIcon(resourceImage);
+            builder.setSmallIcon(R.drawable.chat);
         }
 
 
 
         Intent resultIntent = new Intent(this, MainActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 1, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 1, resultIntent, PendingIntent.FLAG_IMMUTABLE);
 
 
         builder.setContentTitle(remoteMessage.getNotification().getTitle());
