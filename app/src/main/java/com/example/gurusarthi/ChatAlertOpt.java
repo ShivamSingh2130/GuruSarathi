@@ -6,15 +6,13 @@ public class ChatAlertOpt {
 
     private String mTitle;
     private int mIcon;
-    private boolean mCanAdd;
-    private boolean mCanRemove;
+    private boolean isAdded;
 
 
-    public  ChatAlertOpt(String title, int icon, boolean canAdd, boolean canRemove) {
+    public  ChatAlertOpt(String title, int icon, boolean misAdded) {
         mTitle = title;
         mIcon = icon;
-        mCanAdd = canAdd;
-        mCanRemove = canRemove;
+        misAdded = isAdded;
     }
 
     public String getTitle() {
@@ -34,18 +32,11 @@ public class ChatAlertOpt {
     }
 
     public boolean isAddable() {
-        return mCanAdd;
+        return isAdded;
     }
 
     public void setAddable(boolean addable) {
-        mCanAdd = addable;
+        isAdded = addable;
     }
 
-    public boolean isRemovable() {
-        return mCanRemove;
-    }
-
-    public void setRemovable(boolean removable) {
-        mCanRemove = removable;
-    }
 }

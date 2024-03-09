@@ -79,10 +79,11 @@
 
             <EditText
                 android:id="@+id/textmsg"
-                android:layout_width="340dp"
-                android:layout_height="55.00dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="@dimen/_30sdp"
+                android:layout_marginRight="@dimen/_30sdp"
                 android:background="@null"
                 android:fontFamily="@font/poppins_regular"
                 android:hint="Type The Messages..."
@@ -90,12 +91,8 @@
 
             <ImageView
                 android:id="@+id/chatIcon"
-                android:layout_width="55dp"
-                android:layout_height="42dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginEnd="166dp"
-                android:layout_marginBottom="33dp"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
                 android:src="@drawable/chat" />
 
         </androidx.cardview.widget.CardView>

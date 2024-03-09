@@ -28,7 +28,7 @@ import java.util.Date;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class ChatWin extends AppCompatActivity {
+public class ChatWin extends AppCompatActivity implements ChatIconSelectedListner {
     String reciverimg, reciverUid,reciverName,SenderUID;
     CircleImageView profile;
     TextView reciverNName;
@@ -85,6 +85,7 @@ public class ChatWin extends AppCompatActivity {
 
                 ChatOptionsDialog chat= ChatOptionsDialog.newInstance("chat");
                 chat.show(getSupportFragmentManager(), "MyBottomSheetDialogFragment");
+                chat.getArguments().getString("option","");
             }
         });
 
@@ -127,35 +128,44 @@ public class ChatWin extends AppCompatActivity {
         sendbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String message = textmsg.getText().toString();
-                if (message.isEmpty()){
-                    Toast.makeText(ChatWin.this, "Enter The Message First", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                textmsg.setText("");
-                Date date = new Date();
-                MsgModel messagess = new MsgModel(message,SenderUID,date.getTime());
+                sendMsg(textmsg.getText().toString());
 
-                database=FirebaseDatabase.getInstance();
-                database.getReference().child("chats")
-                        .child(senderRoom)
-                        .child("messages")
-                        .push().setValue(messagess).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                database.getReference().child("chats")
-                                        .child(reciverRoom)
-                                        .child("messages")
-                                        .push().setValue(messagess).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                            @Override
-                                            public void onComplete(@NonNull Task<Void> task) {
-
-                                            }
-                                        });
-                            }
-                        });
             }
         });
 
+    }
+
+    private void sendMsg(String message ) {
+        if (message.isEmpty()){
+            Toast.makeText(ChatWin.this, "Enter The Message First", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        textmsg.setText("");
+        Date date = new Date();
+        MsgModel messagess = new MsgModel(message,SenderUID,date.getTime());
+
+        database=FirebaseDatabase.getInstance();
+        database.getReference().child("chats")
+                .child(senderRoom)
+                .child("messages")
+                .push().setValue(messagess).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        database.getReference().child("chats")
+                                .child(reciverRoom)
+                                .child("messages")
+                                .push().setValue(messagess).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+
+                                    }
+                                });
+                    }
+                });
+    }
+
+    @Override
+    public void onOptionsSelected(ChatAlertOpt selectedOptions,String location) {
+        sendMsg(location+"\n"+selectedOptions.getTitle());
     }
 }

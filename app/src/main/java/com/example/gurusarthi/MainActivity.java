@@ -63,16 +63,23 @@ public class MainActivity extends AppCompatActivity{
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                usersArrayList.clear(); // Clear the list before adding new users
+
                 for (DataSnapshot dataSnapshot: snapshot.getChildren())
                 {
                    Log.e("dataSnapshot",dataSnapshot.getChildren().toString());
                     Users users = dataSnapshot.getValue(Users.class);
-                    usersArrayList.add(users);
+                    if (auth.getCurrentUser() != null) {
+                        if (!users.getUserId().equals(auth.getCurrentUser().getUid())) {
+                            usersArrayList.add(users);
+                        }
+                    }
+
                     adapter = new UserAdpter(MainActivity.this,usersArrayList);
                     mainUserRecyclerView.setAdapter(adapter);
 
+                    adapter.notifyDataSetChanged();
                 }
-                adapter.notifyDataSetChanged();
             }
 
             @Override

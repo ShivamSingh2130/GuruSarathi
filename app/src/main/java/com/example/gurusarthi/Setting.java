@@ -71,7 +71,7 @@ public class Setting extends AppCompatActivity {
                     String status = snapshot.child("status").getValue().toString();
                     setname.setText(name);
                     setstatus.setText(status);
-                    Picasso.get().load(profile).into(setprofile);
+                    Picasso.get().load(profile).error(R.drawable.photocamera).placeholder(R.drawable.photocamera).into(setprofile);
                 }
 
             }

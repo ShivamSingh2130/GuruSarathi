@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/listContainer"
     android:orientation="horizontal"
-
     android:layout_margin="@dimen/_10sdp"
     android:layout_height="wrap_content">
     <ImageView
@@ -27,12 +27,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:visibility="gone"
         android:layout_marginEnd="@dimen/_15sdp"
         android:src="@android:drawable/ic_input_add"/>
     <ImageView
         android:id="@+id/remove"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:layout_gravity="center"
         android:src="@android:drawable/ic_delete"/>
 </LinearLayout>
