@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -38,6 +39,7 @@ public class Setting extends AppCompatActivity {
     Uri setImageUri;
     String email,password;
     ProgressDialog progressDialog;
+    SharedPreferences sharedPreferences;
 
 
 
@@ -108,7 +110,9 @@ public class Setting extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(Uri uri) {
                                     String finalImageUri = uri.toString();
-                                    Users users = new Users(auth.getUid(), name,email,password,finalImageUri,Status);
+                                    sharedPreferences = getSharedPreferences("SavedToken",MODE_PRIVATE);
+                                    String tokenInMain =  sharedPreferences.getString("ntoken","mynull");
+                                    Users users = new Users(auth.getUid(), name,email,password,finalImageUri,Status,tokenInMain);
                                     reference.setValue(users).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
@@ -133,7 +137,9 @@ public class Setting extends AppCompatActivity {
                         @Override
                         public void onSuccess(Uri uri) {
                             String finalImageUri = uri.toString();
-                            Users users = new Users(auth.getUid(), name,email,password,finalImageUri,Status);
+                            sharedPreferences = getSharedPreferences("SavedToken",MODE_PRIVATE);
+                            String tokenInMain =  sharedPreferences.getString("ntoken","mynull");
+                            Users users = new Users(auth.getUid(), name,email,password,finalImageUri,Status,tokenInMain);
                             reference.setValue(users).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {

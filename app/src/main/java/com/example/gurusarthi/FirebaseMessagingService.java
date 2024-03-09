@@ -8,6 +8,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -60,7 +61,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
 
         int resourceImage = getResources().getIdentifier(remoteMessage.getNotification().getIcon(), "drawable", getPackageName());
 
-
+        Bitmap bitmap = loadBitmapFromUri(remoteMessage.getNotification().getIcon());
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "CHANNEL_ID");
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -106,5 +107,10 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
 
 
     }
-
+    private static Bitmap loadBitmapFromUri(String imageUrl) {
+        // Implement your method to load Bitmap from the given URI (e.g., using Glide or BitmapFactory)
+        // Example:
+        // return BitmapFactory.decodeFile(imageUrl);
+        return null;
+    }
 }

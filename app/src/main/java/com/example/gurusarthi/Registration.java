@@ -111,10 +111,10 @@ public class Registration extends AppCompatActivity {
                                                     @Override
                                                     public void onSuccess(Uri uri) {
                                                         imageuri = uri.toString();
-                                                        Users users = new Users(id,namee,emaill,Password,imageuri,status);
                                                         sharedPreferences = getSharedPreferences("SavedToken",MODE_PRIVATE);
                                                         String tokenInMain =  sharedPreferences.getString("ntoken","mynull");
-                                                        users.setToken(tokenInMain);
+                                                        Users users = new Users(id,namee,emaill,Password,imageuri,status,tokenInMain);
+
                                                         reference.setValue(users).addOnCompleteListener(new OnCompleteListener<Void>() {
                                                             @Override
                                                             public void onComplete(@NonNull Task<Void> task) {
@@ -136,10 +136,10 @@ public class Registration extends AppCompatActivity {
                                 }else {
                                     String status = "Hey I'm Using This Application";
                                     imageuri = "https://firebasestorage.googleapis.com/v0/b/av-messenger-dc8f3.appspot.com/o/man.png?alt=media&token=880f431d-9344-45e7-afe4-c2cafe8a5257";
-                                    Users users = new Users(id,namee,emaill,Password,imageuri,status);
                                     sharedPreferences = getSharedPreferences("SavedToken",MODE_PRIVATE);
                                     String tokenInMain =  sharedPreferences.getString("ntoken","mynull");
-                                    users.setToken(tokenInMain);
+                                    Users users = new Users(id,namee,emaill,Password,imageuri,status,tokenInMain);
+
                                     reference.setValue(users).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {

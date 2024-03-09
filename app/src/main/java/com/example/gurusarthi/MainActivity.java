@@ -8,11 +8,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -32,6 +34,7 @@ public class MainActivity extends AppCompatActivity{
     ArrayList<Users> usersArrayList;
     ImageView imglogout;
     ImageView cumbut,setbut,chatIcon;
+    SharedPreferences sharedPreferences;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -48,6 +51,9 @@ public class MainActivity extends AppCompatActivity{
         DatabaseReference reference = database.getReference().child("user");
 
         usersArrayList = new ArrayList<>();
+        sharedPreferences = getSharedPreferences("SavedToken",MODE_PRIVATE);
+        String tokenInMain =  sharedPreferences.getString("ntoken","mynull");
+        Toast.makeText(MainActivity.this, tokenInMain, Toast.LENGTH_SHORT).show();
 
         mainUserRecyclerView = findViewById(R.id.mainUserRecyclerView);
         mainUserRecyclerView.setLayoutManager(new LinearLayoutManager(this));

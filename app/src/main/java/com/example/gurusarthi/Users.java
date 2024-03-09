@@ -4,13 +4,14 @@ public class Users {
     String profilepic,mail,userName,password,userId,lastMessage,status ,token;
     public Users(){}
 
-    public  Users(String id, String namee, String maill, String password, String profilepic, String status){
+    public  Users(String id, String namee, String maill, String password, String profilepic, String status, String token){
         this.userId= id;
         this.userName=namee;
         this.mail= maill;
         this.password=password;
         this.profilepic=profilepic;
         this.status=status;
+        this.token=token;
     }
 
     public String getProfilepic() {
