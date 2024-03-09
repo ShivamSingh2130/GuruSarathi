@@ -2,6 +2,7 @@ package com.example.gurusarthi;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -28,13 +29,20 @@ public class SharedPref {
 
     // Retrieve the list of icons from SharedPreferences
     public static List<ChatAlertOpt> getIconList(Context context) {
-        SharedPreferences preferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
-        String json = preferences.getString(KEY_ICON_LIST, "");
+        try{
+            SharedPreferences preferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+            String json = preferences.getString(KEY_ICON_LIST, "");
 
-        // Convert JSON string to list of ChatAlertOpt objects
-        Gson gson = new Gson();
-        Type type = new TypeToken<List<ChatAlertOpt>>() {}.getType();
-        return gson.fromJson(json, type);
+            // Convert JSON string to list of ChatAlertOpt objects
+            Gson gson = new Gson();
+            Type type = new TypeToken<List<ChatAlertOpt>>() {}.getType();
+            Log.i("TypeTokenerror",gson.fromJson(json, type));
+            return gson.fromJson(json, type);
+        }catch (NullPointerException e){
+            return null;
+        }
+
+
     }
 }
 
