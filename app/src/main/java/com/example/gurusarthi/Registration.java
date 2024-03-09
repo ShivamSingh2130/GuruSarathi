@@ -137,15 +137,14 @@ public class Registration extends AppCompatActivity {
                                     String status = "Hey I'm Using This Application";
                                     imageuri = "https://firebasestorage.googleapis.com/v0/b/av-messenger-dc8f3.appspot.com/o/man.png?alt=media&token=880f431d-9344-45e7-afe4-c2cafe8a5257";
                                     Users users = new Users(id,namee,emaill,Password,imageuri,status);
+                                    sharedPreferences = getSharedPreferences("SavedToken",MODE_PRIVATE);
+                                    String tokenInMain =  sharedPreferences.getString("ntoken","mynull");
+                                    users.setToken(tokenInMain);
                                     reference.setValue(users).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if (task.isSuccessful()){
                                                 progressDialog.show();
-
-                                                sharedPreferences = getSharedPreferences("SavedToken",MODE_PRIVATE);
-                                                String tokenInMain =  sharedPreferences.getString("ntoken","mynull");
-                                                users.setToken(tokenInMain);
 
                                                 Intent intent = new Intent(Registration.this,MainActivity.class);
                                                 startActivity(intent);
