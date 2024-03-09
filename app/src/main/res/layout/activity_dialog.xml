@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical">
+    <EditText
+        android:id="@+id/address"
+        android:hint="Location"
+        android:layout_margin="@dimen/_10sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/optionsListView"
+        android:layout_width="match_parent"
+        tools:listitem="@layout/list_item"
+        tools:itemCount="10"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
