@@ -49,9 +49,11 @@ public class ChatOptionsDialog extends BottomSheetDialogFragment {
         }
 
         // Create a list of items
+
        items = getIconList(getContext());
         if (items == null && items.size() == 0){
 
+/*
 
             items.add(new ChatAlertOpt("Duster",R.drawable.duster, false));
             items.add(new ChatAlertOpt("Chalk",R.drawable.chalk, false));
@@ -69,7 +71,11 @@ public class ChatOptionsDialog extends BottomSheetDialogFragment {
             items.add(new ChatAlertOpt("Threads",R.drawable.threads, false));
             items.add(new ChatAlertOpt("Attendance Sheet",R.drawable.attendence_sheet, false));
             items.add(new ChatAlertOpt("Question Paper",R.drawable.question_papaer, false));
-
+*/
+            items.add(new ChatAlertOpt("Duster1",R.drawable.chat, false));
+            items.add(new ChatAlertOpt("Duster2",R.drawable.chat, false));
+            items.add(new ChatAlertOpt("Duster3",R.drawable.chat, false));
+            items.add(new ChatAlertOpt("Duster4",R.drawable.chat, false));
             saveIconList(getActivity(),items);
         }else {
            items = getIconList(getActivity());
@@ -83,7 +89,10 @@ public class ChatOptionsDialog extends BottomSheetDialogFragment {
 
         // Create an adapter for the list of items
         List<ChatAlertOpt> filteredList ;
+
         if (from.equals("chat")&&items != null && items.size() != 0){
+
+
             if (getActivity() instanceof ChatIconSelectedListner) {
                 optionsListener = (ChatIconSelectedListner) getActivity();
             } else {
