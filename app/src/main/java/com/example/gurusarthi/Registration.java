@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -41,7 +42,7 @@ public class Registration extends AppCompatActivity {
     FirebaseDatabase database;
     FirebaseStorage storage;
     ProgressDialog progressDialog;
-
+    SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,6 +112,9 @@ public class Registration extends AppCompatActivity {
                                                     public void onSuccess(Uri uri) {
                                                         imageuri = uri.toString();
                                                         Users users = new Users(id,namee,emaill,Password,imageuri,status);
+                                                        sharedPreferences = getSharedPreferences("SavedToken",MODE_PRIVATE);
+                                                        String tokenInMain =  sharedPreferences.getString("ntoken","mynull");
+                                                        users.setToken(tokenInMain);
                                                         reference.setValue(users).addOnCompleteListener(new OnCompleteListener<Void>() {
                                                             @Override
                                                             public void onComplete(@NonNull Task<Void> task) {
@@ -138,6 +142,11 @@ public class Registration extends AppCompatActivity {
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if (task.isSuccessful()){
                                                 progressDialog.show();
+
+                                                sharedPreferences = getSharedPreferences("SavedToken",MODE_PRIVATE);
+                                                String tokenInMain =  sharedPreferences.getString("ntoken","mynull");
+                                                users.setToken(tokenInMain);
+
                                                 Intent intent = new Intent(Registration.this,MainActivity.class);
                                                 startActivity(intent);
                                                 finish();

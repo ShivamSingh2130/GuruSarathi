@@ -1,7 +1,7 @@
 package com.example.gurusarthi;
 
 public class Users {
-    String profilepic,mail,userName,password,userId,lastMessage,status;
+    String profilepic,mail,userName,password,userId,lastMessage,status ,token;
     public Users(){}
 
     public  Users(String id, String namee, String maill, String password, String profilepic, String status){
@@ -67,5 +67,13 @@ public class Users {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

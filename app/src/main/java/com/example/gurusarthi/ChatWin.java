@@ -29,12 +29,12 @@ import java.util.Date;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ChatWin extends AppCompatActivity implements ChatIconSelectedListner {
-    String reciverimg, reciverUid,reciverName,SenderUID;
+    String reciverimg, reciverUid,reciverName,SenderUID,receiverToken;
     CircleImageView profile;
     TextView reciverNName;
     FirebaseDatabase database;
     FirebaseAuth firebaseAuth;
-    public  static String senderImg;
+    public  static String senderImg,senderName;
     public  static String reciverIImg;
     CardView sendbtn;
     EditText textmsg;
@@ -55,6 +55,7 @@ public class ChatWin extends AppCompatActivity implements ChatIconSelectedListne
         reciverName = getIntent().getStringExtra("nameeee");
         reciverimg = getIntent().getStringExtra("reciverImg");
         reciverUid = getIntent().getStringExtra("uid");
+        receiverToken =  getIntent().getStringExtra("TOKEN");
 
         messagesArrayList = new ArrayList<>();
 
@@ -114,6 +115,7 @@ public class ChatWin extends AppCompatActivity implements ChatIconSelectedListne
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.hasChildren()){
                     senderImg= snapshot.child("profilepic").getValue().toString();
+                    senderName = snapshot.child("userName").getValue().toString();
                     reciverIImg=reciverimg;
                 }
 
@@ -156,7 +158,9 @@ public class ChatWin extends AppCompatActivity implements ChatIconSelectedListne
                                 .push().setValue(messagess).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
-
+                                        FcmNotificationsSender fcmNotificationsSender = new FcmNotificationsSender(receiverToken,senderName
+                                                ,message,getApplicationContext(),ChatWin.this);
+                                        fcmNotificationsSender.SendNotifications();
                                     }
                                 });
                     }
