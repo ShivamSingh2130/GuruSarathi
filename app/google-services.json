@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "650399405445",
+    "project_id": "gurusarthi-138f0",
+    "storage_bucket": "gurusarthi-138f0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:650399405445:android:2b132d32d68d49e80320ec",
+        "android_client_info": {
+          "package_name": "com.example.gurusarthi"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-3WoFBnRytswbizviZ73icdVz6b4-WIo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
