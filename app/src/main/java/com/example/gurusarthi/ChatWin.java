@@ -85,7 +85,6 @@ public class ChatWin extends AppCompatActivity implements ChatIconSelectedListne
 
                 ChatOptionsDialog chat= ChatOptionsDialog.newInstance("chat");
                 chat.show(getSupportFragmentManager(), "MyBottomSheetDialogFragment");
-                chat.getArguments().getString("option","");
             }
         });
 

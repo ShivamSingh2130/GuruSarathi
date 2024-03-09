@@ -28,8 +28,8 @@ import java.util.stream.Collectors;
 
 public class ChatOptionsDialog extends BottomSheetDialogFragment {
 
-  private String from ;
-  private ChatIconSelectedListner optionsListener ;
+    private String from ;
+    private ChatIconSelectedListner optionsListener ;
     private  List<ChatAlertOpt> items = new ArrayList<>();
     public static ChatOptionsDialog newInstance(String mfrom) {
         ChatOptionsDialog fragment = new ChatOptionsDialog();
@@ -44,41 +44,21 @@ public class ChatOptionsDialog extends BottomSheetDialogFragment {
         // Inflate the layout for the bottom sheet
         View view = inflater.inflate(R.layout.activity_dialog, container, false);
         if (getArguments() != null) {
-             from = getArguments().getString("mfrom");
+            from = getArguments().getString("mfrom");
             // Do something with the item
         }
 
         // Create a list of items
-
-       items = getIconList(getContext());
-        if (items == null && items.size() == 0){
-
-/*
-
-            items.add(new ChatAlertOpt("Duster",R.drawable.duster, false));
-            items.add(new ChatAlertOpt("Chalk",R.drawable.chalk, false));
-            items.add(new ChatAlertOpt("Ac Remote",R.drawable.ac_remote, false));
-            items.add(new ChatAlertOpt("Projector Remote",R.drawable.projector_remote, false));
-            items.add(new ChatAlertOpt("Laptop",R.drawable.laptop, false));
-            items.add(new ChatAlertOpt("Water Bottle",R.drawable.water_bottle, false));
-            items.add(new ChatAlertOpt("Tea",R.drawable.tea, false));
-            items.add(new ChatAlertOpt("Laptop Charger",R.drawable.laptop_charger, false));
-            items.add(new ChatAlertOpt("File",R.drawable.file_logo, false));
-            items.add(new ChatAlertOpt("USB_C_ hdmi",R.drawable.usbc_hdmi, false));
-            items.add(new ChatAlertOpt("Mini_hdmi",R.drawable.mini_hdmi, false));
-            items.add(new ChatAlertOpt("Blue_Pen",R.drawable.blue_pen, false));
-            items.add(new ChatAlertOpt("Red_Pen",R.drawable.red_pen, false));
-            items.add(new ChatAlertOpt("Threads",R.drawable.threads, false));
-            items.add(new ChatAlertOpt("Attendance Sheet",R.drawable.attendence_sheet, false));
-            items.add(new ChatAlertOpt("Question Paper",R.drawable.question_papaer, false));
-*/
+        items = getIconList(getActivity());
+        if (items.isEmpty()){
+            items = new ArrayList<>();
             items.add(new ChatAlertOpt("Duster1",R.drawable.chat, false));
             items.add(new ChatAlertOpt("Duster2",R.drawable.chat, false));
             items.add(new ChatAlertOpt("Duster3",R.drawable.chat, false));
             items.add(new ChatAlertOpt("Duster4",R.drawable.chat, false));
             saveIconList(getActivity(),items);
         }else {
-           items = getIconList(getActivity());
+            items = getIconList(getActivity());
         }
 
 
@@ -89,10 +69,7 @@ public class ChatOptionsDialog extends BottomSheetDialogFragment {
 
         // Create an adapter for the list of items
         List<ChatAlertOpt> filteredList ;
-
-        if (from.equals("chat")&&items != null && items.size() != 0){
-
-
+        if (from.equals("chat")){
             if (getActivity() instanceof ChatIconSelectedListner) {
                 optionsListener = (ChatIconSelectedListner) getActivity();
             } else {
@@ -124,11 +101,12 @@ public class ChatOptionsDialog extends BottomSheetDialogFragment {
                     saveIconList(getActivity(),filteredList);
                 }
 
-               items = filteredList;
+                items = filteredList;
 
             }
 
         });
+        Log.i("items",filteredList.toString());
         // Set the adapter on the RecyclerView
         recyclerView.setAdapter(madapter);
         madapter.notifyDataSetChanged();
