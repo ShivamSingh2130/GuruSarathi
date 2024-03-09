@@ -47,14 +47,11 @@ public class ChatOptionsDialog extends BottomSheetDialogFragment {
              from = getArguments().getString("mfrom");
             // Do something with the item
         }
-        if (getActivity() instanceof ChatIconSelectedListner) {
-            optionsListener = (ChatIconSelectedListner) getActivity();
-        } else {
-            throw new ClassCastException(getActivity().toString() + " must implement MyFragmentListener");
-        }
+
         // Create a list of items
         items = getIconList(getActivity());
         if (items.isEmpty()){
+            items = new ArrayList<>();
             items.add(new ChatAlertOpt("Duster1",R.drawable.chat, false));
             items.add(new ChatAlertOpt("Duster2",R.drawable.chat, false));
             items.add(new ChatAlertOpt("Duster3",R.drawable.chat, false));
@@ -73,7 +70,11 @@ public class ChatOptionsDialog extends BottomSheetDialogFragment {
         // Create an adapter for the list of items
         List<ChatAlertOpt> filteredList ;
         if (from.equals("chat")){
-
+            if (getActivity() instanceof ChatIconSelectedListner) {
+                optionsListener = (ChatIconSelectedListner) getActivity();
+            } else {
+                throw new ClassCastException(getActivity().toString() + " must implement MyFragmentListener");
+            }
             filteredList = items.stream().filter(chatAlertOpt -> chatAlertOpt.isAddable())
                     .collect(Collectors.toList());
 

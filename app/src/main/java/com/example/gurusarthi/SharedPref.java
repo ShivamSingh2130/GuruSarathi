@@ -7,6 +7,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 
 public class SharedPref {
@@ -31,10 +32,15 @@ public class SharedPref {
         SharedPreferences preferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
         String json = preferences.getString(KEY_ICON_LIST, "");
 
-        // Convert JSON string to list of ChatAlertOpt objects
-        Gson gson = new Gson();
-        Type type = new TypeToken<List<ChatAlertOpt>>() {}.getType();
-        return gson.fromJson(json, type);
+        // Check if the json string is not empty before conversion
+        if (!json.isEmpty()) {
+            // Convert JSON string to list of ChatAlertOpt objects
+            Gson gson = new Gson();
+            Type type = new TypeToken<List<ChatAlertOpt>>() {}.getType();
+            return gson.fromJson(json, type);
+        } else {
+            return new ArrayList<>(); // Return an empty list if no data is found
+        }
     }
 }
 
