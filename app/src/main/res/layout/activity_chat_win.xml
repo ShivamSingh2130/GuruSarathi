@@ -87,6 +87,7 @@
                 android:background="@null"
                 android:fontFamily="@font/poppins_regular"
                 android:hint="Type The Messages..."
+                android:textColor="@color/black"
                 android:paddingStart="13.00dp" />
 
             <ImageView

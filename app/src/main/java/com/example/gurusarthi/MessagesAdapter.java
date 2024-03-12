@@ -6,9 +6,15 @@ import static com.example.gurusarthi.ChatWin.senderImg;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -68,12 +74,28 @@ public class MessagesAdapter extends RecyclerView.Adapter {
                 return false;
             }
         });
+
+        String msg =messages.getMessage();
+        String image ="";
+        if (msg.contains("#")){
+
+        }else {
+
+          String[] m =  msg.split("#");
+            if (m.length >= 2) {
+                msg = m[0];
+                image = m[1];
+            }
+        }
+
         if (holder.getClass()==senderVierwHolder.class){
             senderVierwHolder viewHolder = (senderVierwHolder) holder;
-            viewHolder.msgtxt.setText(messages.getMessage());
+            viewHolder.msgtxt.setText(msg);
             Picasso.get().load(senderImg).into(viewHolder.circleImageView);
+            viewHolder.image.setImageBitmap(base64ToBitmap(image));
+
         }else { reciverViewHolder viewHolder = (reciverViewHolder) holder;
-            viewHolder.msgtxt.setText(messages.getMessage());
+            viewHolder.msgtxt.setText(msg);
             Picasso.get().load(reciverIImg).into(viewHolder.circleImageView);
 
 
@@ -94,14 +116,20 @@ public class MessagesAdapter extends RecyclerView.Adapter {
             return ITEM_RECIVE;
         }
     }
-
+    public static Bitmap base64ToBitmap(String base64String) {
+        byte[] decodedString = Base64.decode(base64String, Base64.DEFAULT);
+        return BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+    }
     class  senderVierwHolder extends RecyclerView.ViewHolder {
         CircleImageView circleImageView;
         TextView msgtxt;
+        ImageView image;
+
         public senderVierwHolder(@NonNull View itemView) {
             super(itemView);
             circleImageView = itemView.findViewById(R.id.profilerggg);
             msgtxt = itemView.findViewById(R.id.msgsendertyp);
+            image = itemView.findViewById(R.id.image);
 
         }
     }

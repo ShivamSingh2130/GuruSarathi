@@ -52,10 +52,23 @@ public class ChatOptionsDialog extends BottomSheetDialogFragment {
         items = getIconList(getActivity());
         if (items.isEmpty()){
             items = new ArrayList<>();
-            items.add(new ChatAlertOpt("Duster1",R.drawable.chat, false));
-            items.add(new ChatAlertOpt("Duster2",R.drawable.chat, false));
-            items.add(new ChatAlertOpt("Duster3",R.drawable.chat, false));
-            items.add(new ChatAlertOpt("Duster4",R.drawable.chat, false));
+            items.add(new ChatAlertOpt("Tea",R.drawable.tea, false));
+            items.add(new ChatAlertOpt("Duster",R.drawable.duster, false));
+            items.add(new ChatAlertOpt("Files",R.drawable.files, false));
+            items.add(new ChatAlertOpt("Red pen",R.drawable.red_pen, false));
+            items.add(new ChatAlertOpt("Laptop Charger",R.drawable.laptop_charger, false));
+            items.add(new ChatAlertOpt("Laptop",R.drawable.laptop, false));
+            items.add(new ChatAlertOpt("Ac Remote",R.drawable.ac_remote, false));
+            items.add(new ChatAlertOpt("Projector Remote",R.drawable.projector_remote, false));
+            items.add(new ChatAlertOpt("Thread",R.drawable.threds, false));
+            items.add(new ChatAlertOpt("Mini hdmi",R.drawable.mini_hdmi, false));
+            items.add(new ChatAlertOpt("Water Bootle",R.drawable.bootle, false));
+            items.add(new ChatAlertOpt("chawk",R.drawable.chawk, false));
+            items.add(new ChatAlertOpt("HDMI",R.drawable.hdmi, false));
+            items.add(new ChatAlertOpt("Blue Pen",R.drawable.blue_pen, false));
+            items.add(new ChatAlertOpt("Attendance Sheet",R.drawable.attendance_sheet, false));
+            items.add(new ChatAlertOpt("Question Paper",R.drawable.question_paper, false));
+
             saveIconList(getActivity(),items);
         }else {
             items = getIconList(getActivity());

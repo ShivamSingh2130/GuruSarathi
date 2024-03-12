@@ -51,10 +51,6 @@ public class MainActivity extends AppCompatActivity{
         DatabaseReference reference = database.getReference().child("user");
 
         usersArrayList = new ArrayList<>();
-        sharedPreferences = getSharedPreferences("SavedToken",MODE_PRIVATE);
-        String tokenInMain =  sharedPreferences.getString("ntoken","mynull");
-        Toast.makeText(MainActivity.this, tokenInMain, Toast.LENGTH_SHORT).show();
-
         mainUserRecyclerView = findViewById(R.id.mainUserRecyclerView);
         mainUserRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 

@@ -1,12 +1,17 @@
 package com.example.gurusarthi;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -23,6 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -166,9 +172,16 @@ public class ChatWin extends AppCompatActivity implements ChatIconSelectedListne
                     }
                 });
     }
-
+    public static String drawableToBase64(Context context, @DrawableRes int drawableId) {
+        Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), drawableId);
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+        byte[] byteArray = byteArrayOutputStream.toByteArray();
+        return Base64.encodeToString(byteArray, Base64.DEFAULT);
+    }
     @Override
     public void onOptionsSelected(ChatAlertOpt selectedOptions,String location) {
-        sendMsg(location+"\n"+selectedOptions.getTitle());
+       String base64 = drawableToBase64(this,selectedOptions.getIcon());
+        sendMsg(location+"\n"+selectedOptions.getTitle()+"#"+base64);
     }
 }
