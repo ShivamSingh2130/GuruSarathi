@@ -75,27 +75,31 @@ public class MessagesAdapter extends RecyclerView.Adapter {
             }
         });
 
-        String msg =messages.getMessage();
+        String string ="";
         String image ="";
-        if (msg.contains("#")){
+        if (messages.getMessage().contains("#")){
 
-        }else {
-
-          String[] m =  msg.split("#");
+            String[] m =  messages.getMessage().split("#");
             if (m.length >= 2) {
-                msg = m[0];
+                string = m[0];
                 image = m[1];
             }
+        }else {
+            string =messages.getMessage();
         }
 
         if (holder.getClass()==senderVierwHolder.class){
             senderVierwHolder viewHolder = (senderVierwHolder) holder;
-            viewHolder.msgtxt.setText(msg);
+            viewHolder.msgtxt.setText(string);
             Picasso.get().load(senderImg).into(viewHolder.circleImageView);
+            if(image!=""){ viewHolder.image.setVisibility(View.VISIBLE);} else{
+                viewHolder.image.setVisibility( View.GONE);
+            }
+
             viewHolder.image.setImageBitmap(base64ToBitmap(image));
 
         }else { reciverViewHolder viewHolder = (reciverViewHolder) holder;
-            viewHolder.msgtxt.setText(msg);
+            viewHolder.msgtxt.setText(string);
             Picasso.get().load(reciverIImg).into(viewHolder.circleImageView);
 
 
