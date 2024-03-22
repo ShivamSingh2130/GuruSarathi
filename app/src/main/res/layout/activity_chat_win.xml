@@ -69,14 +69,20 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_35sdp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_4sdp"
             android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
             android:layout_marginEnd="@dimen/_7sdp"
             android:layout_weight="1"
             app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="@dimen/_25sdp">
-
+            <ImageView
+                android:id="@+id/chatIcon"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start|center"
+                android:src="@drawable/chat" />
             <EditText
                 android:id="@+id/textmsg"
                 android:layout_width="match_parent"
@@ -84,6 +90,8 @@
                 android:layout_gravity="center"
                 android:layout_marginLeft="@dimen/_30sdp"
                 android:layout_marginRight="@dimen/_30sdp"
+                android:maxLines="4"
+                android:inputType="textMultiLine"
                 android:background="@null"
                 android:fontFamily="@font/poppins_regular"
                 android:hint="Type The Messages..."
@@ -91,11 +99,12 @@
                 android:paddingStart="13.00dp" />
 
             <ImageView
-                android:id="@+id/chatIcon"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:src="@drawable/chat" />
-
+                android:id="@+id/camBut"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="end|center"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:src="@drawable/camera" />
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView

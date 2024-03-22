@@ -90,7 +90,19 @@ public class MessagesAdapter extends RecyclerView.Adapter {
 
         if (holder.getClass()==senderVierwHolder.class){
             senderVierwHolder viewHolder = (senderVierwHolder) holder;
-            viewHolder.msgtxt.setText(string);
+            if (messages.imageUri!=null){
+                viewHolder.msgtxt.setVisibility(View.GONE);
+                viewHolder.senderImage.setVisibility(View.VISIBLE);
+                Picasso.get().load(messages.imageUri) .placeholder(R.drawable.photocamera) // Placeholder image resource
+                        .error(R.drawable.photocamera) // Error image resource
+                 .into(viewHolder.senderImage);
+
+            }else {
+                viewHolder.msgtxt.setVisibility(View.VISIBLE);
+                viewHolder.senderImage.setVisibility(View.GONE);
+                viewHolder.msgtxt.setText(string);
+            }
+
             Picasso.get().load(senderImg).into(viewHolder.circleImageView);
             if(image!=""){ viewHolder.image.setVisibility(View.VISIBLE);} else{
                 viewHolder.image.setVisibility( View.GONE);
@@ -99,7 +111,19 @@ public class MessagesAdapter extends RecyclerView.Adapter {
             viewHolder.image.setImageBitmap(base64ToBitmap(image));
 
         }else { reciverViewHolder viewHolder = (reciverViewHolder) holder;
-            viewHolder.msgtxt.setText(string);
+            if (messages.imageUri!=null){
+                viewHolder.msgtxt.setVisibility(View.GONE);
+                viewHolder.receiverImage.setVisibility(View.VISIBLE);
+                Picasso.get().load(messages.imageUri) .placeholder(R.drawable.photocamera) // Placeholder image resource
+                        .error(R.drawable.photocamera) // Error image resource
+                .into(viewHolder.receiverImage);
+
+            }else {
+                viewHolder.msgtxt.setVisibility(View.VISIBLE);
+                viewHolder.receiverImage.setVisibility(View.GONE);
+                viewHolder.msgtxt.setText(string);
+            }
+
             Picasso.get().load(reciverIImg).into(viewHolder.circleImageView);
 
 
@@ -127,23 +151,26 @@ public class MessagesAdapter extends RecyclerView.Adapter {
     class  senderVierwHolder extends RecyclerView.ViewHolder {
         CircleImageView circleImageView;
         TextView msgtxt;
-        ImageView image;
+        ImageView image,senderImage;
 
         public senderVierwHolder(@NonNull View itemView) {
             super(itemView);
             circleImageView = itemView.findViewById(R.id.profilerggg);
             msgtxt = itemView.findViewById(R.id.msgsendertyp);
             image = itemView.findViewById(R.id.image);
+            senderImage = itemView.findViewById(R.id.senderImage);
 
         }
     }
     class reciverViewHolder extends RecyclerView.ViewHolder {
         CircleImageView circleImageView;
         TextView msgtxt;
+        ImageView receiverImage;
         public reciverViewHolder(@NonNull View itemView) {
             super(itemView);
             circleImageView = itemView.findViewById(R.id.pro);
             msgtxt = itemView.findViewById(R.id.recivertextset);
+            receiverImage = itemView.findViewById(R.id.receiverImage);
         }
     }
 }
