@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/pro"
@@ -31,5 +32,11 @@
         android:text="GuruSarthi"
         android:textColor="@color/black"
         android:textStyle="bold" />
-
+    <ImageView
+        android:id="@+id/receiverImage"
+        android:layout_width="@dimen/_120sdp"
+        android:layout_toRightOf="@id/pro"
+        android:visibility="gone"
+        android:layout_height="@dimen/_120sdp"
+        tools:src="@drawable/chat"/>
 </RelativeLayout>

@@ -38,5 +38,12 @@
         android:visibility="gone"
         android:layout_height="@dimen/_50sdp"
         tools:src="@drawable/chat"/>
+    <ImageView
+        android:id="@+id/senderImage"
+        android:layout_width="@dimen/_120sdp"
+        android:layout_toLeftOf="@id/profilerggg"
+        android:visibility="gone"
+        android:layout_height="@dimen/_120sdp"
+        tools:src="@drawable/chat"/>
 
 </RelativeLayout>

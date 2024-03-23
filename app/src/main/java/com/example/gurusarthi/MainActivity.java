@@ -4,25 +4,20 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity{
@@ -33,8 +28,7 @@ public class MainActivity extends AppCompatActivity{
     FirebaseDatabase database;
     ArrayList<Users> usersArrayList;
     ImageView imglogout;
-    ImageView cumbut,setbut,chatIcon;
-    SharedPreferences sharedPreferences;
+    ImageView setbut,chatIcon;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -44,7 +38,7 @@ public class MainActivity extends AppCompatActivity{
 
         database=FirebaseDatabase.getInstance();
         auth = FirebaseAuth.getInstance();
-        cumbut = findViewById(R.id.camBut);
+
         setbut = findViewById(R.id.settingBut);
         chatIcon = findViewById(R.id.chatIcon);
 
@@ -126,13 +120,7 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 
-        cumbut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(intent,10);
-            }
-        });
+
 
         if (auth.getCurrentUser() == null){
             Intent intent = new Intent(MainActivity.this, Login.class);
