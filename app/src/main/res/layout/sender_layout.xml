@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profilerggg"
         android:layout_width="@dimen/_25sdp"
@@ -31,6 +34,7 @@
         android:text="GuruSarthi"
         android:textColor="@color/black"
         android:textStyle="bold" />
+
     <ImageView
         android:id="@+id/image"
         android:layout_toLeftOf="@+id/msgsendertyp"
@@ -47,3 +51,12 @@
         tools:src="@drawable/chat"/>
 
 </RelativeLayout>
+    <TextView
+        android:id="@+id/timeStamp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        tools:text="2 o'clock"
+        android:layout_gravity="end"
+        android:layout_margin="@dimen/_10sdp" />
+</LinearLayout>

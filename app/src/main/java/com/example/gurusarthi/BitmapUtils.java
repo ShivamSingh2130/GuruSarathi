@@ -30,12 +30,12 @@ public class BitmapUtils {
         }
 
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
-        String imageFileName = "JPEG_" + timeStamp + "_";
-        File imageFile = new File(imagesDir, imageFileName + ".jpg");
+        String imageFileName = "WEBP_" + timeStamp + "_";
+        File imageFile = new File(imagesDir, imageFileName + ".webp");
 
         try {
             OutputStream os = new FileOutputStream(imageFile);
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 60, os);
+            bitmap.compress(Bitmap.CompressFormat.WEBP, 80, os);
             os.flush();
             os.close();
             return imageFile;

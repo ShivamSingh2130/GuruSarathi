@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools">
-
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/pro"
         android:layout_width="@dimen/_25sdp"
@@ -29,7 +32,7 @@
         android:background="@drawable/reciver_shape"
         android:fontFamily="@font/poppins_regular"
         android:padding="@dimen/_7sdp"
-        android:text="GuruSarthi"
+        tools:text="GuruSarthi"
         android:textColor="@color/black"
         android:textStyle="bold" />
     <ImageView
@@ -40,3 +43,12 @@
         android:layout_height="@dimen/_120sdp"
         tools:src="@drawable/chat"/>
 </RelativeLayout>
+    <TextView
+        android:id="@+id/recivertimeStamp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        tools:text="2 o'clock"
+        android:layout_gravity="start"
+        android:layout_margin="@dimen/_10sdp" />
+</LinearLayout>

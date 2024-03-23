@@ -29,9 +29,12 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+
 public class Setting extends AppCompatActivity {
     ImageView setprofile;
-    EditText setname, setstatus;
+    EditText setname ;
+    DropDown setstatus;
     Button donebut;
     FirebaseAuth auth;
     FirebaseDatabase database;
@@ -59,6 +62,14 @@ public class Setting extends AppCompatActivity {
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Saving...");
         progressDialog.setCancelable(false);
+
+        ArrayList<String> options = new ArrayList<>();
+        options.add("Available");
+        options.add("Busy");
+        options.add("onLeave");
+        options.add("Lunch");
+
+        setstatus.setOptions(options);
 
         DatabaseReference reference = database.getReference().child("user").child(auth.getUid());
         StorageReference storageReference = storage.getReference().child("upload").child(auth.getUid());

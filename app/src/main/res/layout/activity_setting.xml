@@ -24,6 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_40sdp"
         android:ems="10"
+        android:textColor="@color/black"
         android:padding="@dimen/_10sdp"
         android:inputType="textPersonName"
         android:hint="Name"
@@ -31,15 +32,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <EditText
+    <com.example.gurusarthi.DropDown
         android:id="@+id/settingstatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
+        style="@style/Widget.AppCompat.Spinner.Underlined"
+        android:ems="12"
         android:layout_marginTop="@dimen/_40sdp"
         android:padding="@dimen/_10sdp"
         android:inputType="textPersonName"
-        android:hint="Surname"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:drawableEnd="@android:drawable/arrow_down_float"
+        android:hint="Status"
         app:layout_constraintTop_toBottomOf="@+id/settingname"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

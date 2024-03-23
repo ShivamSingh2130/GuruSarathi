@@ -6,17 +6,16 @@ import static com.example.gurusarthi.ChatWin.senderImg;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import java.text.SimpleDateFormat;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,6 +23,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -96,7 +97,14 @@ public class MessagesAdapter extends RecyclerView.Adapter {
                 Picasso.get().load(messages.imageUri) .placeholder(R.drawable.photocamera) // Placeholder image resource
                         .error(R.drawable.photocamera) // Error image resource
                  .into(viewHolder.senderImage);
-
+                viewHolder.senderImage.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(context, FullImageActivity.class);
+                        intent.putExtra("image",messages.imageUri);
+                        context.startActivity(intent);
+                    }
+                });
             }else {
                 viewHolder.msgtxt.setVisibility(View.VISIBLE);
                 viewHolder.senderImage.setVisibility(View.GONE);
@@ -107,7 +115,13 @@ public class MessagesAdapter extends RecyclerView.Adapter {
             if(image!=""){ viewHolder.image.setVisibility(View.VISIBLE);} else{
                 viewHolder.image.setVisibility( View.GONE);
             }
+            // Convert long to Date object
+            Date date = new Date(messages.timeStamp);
+            // Format the date and time using SimpleDateFormat
+            SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyyy hh:mm", Locale.getDefault());
+            String formattedDateTime = sdf.format(date);
 
+            viewHolder.timeStamp.setText(formattedDateTime);
             viewHolder.image.setImageBitmap(base64ToBitmap(image));
 
         }else { reciverViewHolder viewHolder = (reciverViewHolder) holder;
@@ -117,13 +131,26 @@ public class MessagesAdapter extends RecyclerView.Adapter {
                 Picasso.get().load(messages.imageUri) .placeholder(R.drawable.photocamera) // Placeholder image resource
                         .error(R.drawable.photocamera) // Error image resource
                 .into(viewHolder.receiverImage);
-
+                viewHolder.receiverImage.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(context, FullImageActivity.class);
+                        intent.putExtra("image",messages.imageUri);
+                        context.startActivity(intent);
+                    }
+                });
             }else {
                 viewHolder.msgtxt.setVisibility(View.VISIBLE);
                 viewHolder.receiverImage.setVisibility(View.GONE);
                 viewHolder.msgtxt.setText(string);
             }
+            // Convert long to Date object
+            Date date = new Date(messages.timeStamp);
+            // Format the date and time using SimpleDateFormat
+            SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyyy hh:mm", Locale.getDefault());
+            String formattedDateTime = sdf.format(date);
 
+            viewHolder.timeStamp.setText(formattedDateTime);
             Picasso.get().load(reciverIImg).into(viewHolder.circleImageView);
 
 
@@ -150,7 +177,7 @@ public class MessagesAdapter extends RecyclerView.Adapter {
     }
     class  senderVierwHolder extends RecyclerView.ViewHolder {
         CircleImageView circleImageView;
-        TextView msgtxt;
+        TextView msgtxt,timeStamp;
         ImageView image,senderImage;
 
         public senderVierwHolder(@NonNull View itemView) {
@@ -159,17 +186,19 @@ public class MessagesAdapter extends RecyclerView.Adapter {
             msgtxt = itemView.findViewById(R.id.msgsendertyp);
             image = itemView.findViewById(R.id.image);
             senderImage = itemView.findViewById(R.id.senderImage);
+            timeStamp = itemView.findViewById(R.id.timeStamp);
 
         }
     }
     class reciverViewHolder extends RecyclerView.ViewHolder {
         CircleImageView circleImageView;
-        TextView msgtxt;
+        TextView msgtxt,timeStamp;
         ImageView receiverImage;
         public reciverViewHolder(@NonNull View itemView) {
             super(itemView);
             circleImageView = itemView.findViewById(R.id.pro);
             msgtxt = itemView.findViewById(R.id.recivertextset);
+            timeStamp = itemView.findViewById(R.id.recivertimeStamp);
             receiverImage = itemView.findViewById(R.id.receiverImage);
         }
     }

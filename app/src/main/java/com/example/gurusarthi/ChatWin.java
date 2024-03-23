@@ -18,6 +18,8 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Base64;
 import android.view.View;
 import android.widget.EditText;
@@ -94,6 +96,8 @@ public class ChatWin extends AppCompatActivity implements ChatIconSelectedListne
 
         senderRoom = SenderUID+reciverUid;
         reciverRoom = reciverUid+SenderUID;
+
+
         cumbut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -177,7 +181,7 @@ public class ChatWin extends AppCompatActivity implements ChatIconSelectedListne
         Date date = new Date();
         if (imageUri != null) {
             // Upload image to Firebase Storage
-            StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("chat_images").child("image/" + System.currentTimeMillis() + ".jpg");
+            StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("chat_images").child("image/" + System.currentTimeMillis() + ".webp");
             storageRef.putFile(imageUri)
                     .addOnSuccessListener(taskSnapshot -> {
                         // Image uploaded successfully, get the download URL
@@ -273,6 +277,8 @@ public class ChatWin extends AppCompatActivity implements ChatIconSelectedListne
             }else {
                 Toast.makeText(this, "Failed to retrieve image URI", Toast.LENGTH_SHORT).show();
             }
+        }else {
+            Toast.makeText(this, "Image Discarded", Toast.LENGTH_SHORT).show();
         }
     }
 
